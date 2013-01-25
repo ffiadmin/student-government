@@ -32,12 +32,12 @@ a:active {
  * ------------------------------------------
  */
 
-a.highlight {
+.current_page_item a, a.highlight {
 	color: #44BBFF;
 	text-decoration: none;	
 }
 
-a.highlight:active {
+.current_page_item a:active, a.highlight:active {
 	color: #C36;
 }
 

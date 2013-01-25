@@ -1,9 +1,9 @@
 <?php
-//Header functions
-	require_once("../../../../Connections/connDBA.php");
-
+//Generate the root URL
+	$URL = explode("wp-content", $_SERVER['REQUEST_URI']);
+	
 //Define this as a javascript file
-	header ("Content-type: text/javascript");
+	header("Content-type: text/javascript");
 ?>
 (function($) {
 	$(document).ready(function() {
@@ -53,7 +53,7 @@
 		
 	//Provide search suggestions
 		$('input.search.template').autocomplete({
-			'source' : '<?php echo $root; ?>book-exchange/system/server/suggestions.php?searchBy=title&category=0',
+			'source' : '//<?php echo $_SERVER['HTTP_HOST'] . $URL[0] ?>book-exchange/system/server/suggestions.php?searchBy=title&category=0',
 			'minLength' : 2,
 			'select' : function(event, ui) {
 				$(this).val(ui.item.label).parent().submit();
