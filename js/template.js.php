@@ -53,7 +53,7 @@
 		
 	//Provide search suggestions
 		$('input.search.template').autocomplete({
-			'source' : '//<?php echo $_SERVER['HTTP_HOST'] . $URL[0] ?>book-exchange/system/server/suggestions.php?searchBy=title&category=0',
+			'source' : '//<?php echo $_SERVER['HTTP_HOST'] . $URL[0] ?>wp-content/plugins/book-exchange/app/system/server/suggestions.php?searchBy=title&category=0',
 			'minLength' : 2,
 			'select' : function(event, ui) {
 				$(this).val(ui.item.label).parent().submit();

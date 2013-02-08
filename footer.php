@@ -1,44 +1,48 @@
 <footer>
+<?php
+	$pages = get_pages(array("sort_column" => "menu_order"));
+	$info = array("0" => array()); //The inner array with a key of 0 is for top-level pages
+	
+	for ($i = 0; $i < count($pages); $i++) {
+		$parent = $pages[$i]->post_parent;
+		$ID = $pages[$i]->ID;
+		$title = $pages[$i]->post_title;
+		$URL = $pages[$i]->guid;
+		
+	//Create the array which will hold the child pages whose parent is indicated by the key
+		!array_key_exists($parent, $info) ? $info[$parent] = array() : TRUE;
+		
+	//Push the page data onto the info array
+		array_push($info[$parent], array("ID" => $ID,"title" => $title, "URL" => $URL));
+	}
+?>
 <section class="main">
 <nav>
 <ul>
-<li>
+<?php
+	$TLPages = $info[0];
+	
+	for ($i = 0; $i < count($TLPages); $i++) {
+		echo "<li>
 <ul>
-<li><a class="item1" href="#">Events</a></li>
-<li><a href="#">Event 1</a></li>
-<li><a href="#">Event 2</a></li>
-<li><a href="#">Event 3</a></li>
-</ul>
-</li>
+<li><a class=\"item" . ($i + 1) . "\" href=\"" . $TLPages[$i]['URL'] . "\">" . $TLPages[$i]['title'] . "</a></li>
+";
 
-<li>
-<ul>
-<li><a class="item2 locked" href="#">Book Exchange</a></li>
-<li><a href="#">Seach Books</a></li>
-<li><a href="#">Book Categories</a></li>
-<li><a class="locked" href="#">Sell Books</a></li>
-<li><a class="locked" href="#">View my Books</a></li>
-</ul>
-</li>
+	//Display subpages
+		if (array_key_exists($TLPages[$i]['ID'], $info)) {
+			$data = $info[$TLPages[$i]['ID']];
+			
+			for($j = 0; $j < count($data); $j++) {
+				echo "<li><a href=\"" . $data[$j]['URL'] . "\">" . $data[$j]['title'] . "</a></li>
+";
+			}
+		}
 
-<li>
-<ul>
-<li><a class="item3" href="#">Literature</a></li>
-<li><a href="#">Newsletters</a></li>
-<li><a class="locked" href="http://google.com/">Meeting Notes</a></li>
-<li><a href="#">Announcements</a></li>
-</ul>
+echo "</ul>
 </li>
-
-<li>
-<ul>
-<li><a class="item4" href="#">About Us</a></li>
-<li><a href="#">Contact Us</a></li>
-<li><a href="#">Officers</a></li>
-<li><a href="#">Committees</a></li>
-<li><a href="#">Professor Office Hours</a></li>
-</ul>
-</li>
+";
+	}
+?>
 </ul>
 </nav>
 

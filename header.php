@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8" />
-<title>Student Government Association</title>
+<title><?php is_front_page() ? bloginfo("name") : wp_title(""); ?></title>
 <link rel="shortcut icon" href="<?php bloginfo('template_url');?>/img/favicon.ico" />
 <link href="http://delfinicdn.ffstatic.com/stylesheets/delfini.all.min.css" rel="stylesheet" />
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css" rel="stylesheet" />
@@ -11,17 +11,18 @@
 </head>
 
 <body>
+<?php if (!is_user_logged_in()) { ?>
 <section class="login">
 <div class="design">
 <div class="login">
-<form action="#" method="post">
+<form action="<?php echo wp_login_url($_SERVER['REQUEST_URI']);?>" method="post">
 <h2>Login</h2>
-<p>Email address:</p><input autocomplete="off" name="username" type="email" />
-<p>Password:</p><input autocomplete="off" name="password" type="password"/>
-<input class="redirect" name="redirect" type="hidden" />
+<p>Email address:</p><input autocomplete="off" name="log" type="email" />
+<p>Password:</p><input autocomplete="off" name="pwd" type="password"/>
+<input class="redirect" name="redirect_old" type="hidden" />
 <input name="action" type="hidden" value="login" />
 <br /><br />
-<input class="red" type="submit" value="Login" />
+<input class="red" name="wp-submit" type="submit" value="Login" />
 <p><a href="#">Forgot your password?</a></p>
 </form>
 </div>
@@ -42,7 +43,7 @@
 </div>
 </div>
 </section>
-
+<?php } ?>
 <nav class="main">
 <ul class="nav">
 <li class="logo"><a href="<?php bloginfo("url"); ?>"><img src="<?php bloginfo('template_url');?>/img/banner.png" /></a></li>
@@ -50,17 +51,15 @@
 </ul>
 
 <ul class="breadcrumb">
-<li><a href="#">Home</a></li>
-<li><a href="#">Book Exchange</a></li>
-<li>View my Books</li>
+<?php echo is_front_page() ? "<li class=\"noLink\">Home</li>" : "<li><a href=\"" . get_bloginfo("url") . "\">Home</a></li>"; ?></li>
 </ul>
 
 <ul class="exchange">
-<li><a href="#">Sell Books</a></li>
-<li><a href="#">Search</a></li>
-<li><a href="#">Browse</a></li>
-<li class="myAccount"><a href="#">My Account</a></li>
-<li class="admin"><a href="#">Administration</a></li>
+<li><a href="<?php echo get_bloginfo("url") . "/book-exchange/sell-books"; ?>">Sell Books</a></li>
+<li><a href="<?php echo get_bloginfo("url") . "/book-exchange/search"; ?>">Search</a></li>
+<li><a href="<?php echo get_bloginfo("url") . "/book-exchange/listings"; ?>">Browse</a></li>
+<li class="myAccount"><a href="<?php echo get_bloginfo("url") . "/book-exchange/account"; ?>">My Account</a></li>
+<?php if (current_user_can("manage_options")) {echo "<li class=\"admin\"><a href=\"" . get_bloginfo("url") . "/admin\">Administration</a></li>";} ?>
 </ul>
 
 <section class="search">
@@ -73,6 +72,12 @@
 </section>
 
 <section class="flag">
-<img src="<?php bloginfo('template_url');?>/img/login.png" />
+<?php
+	if (is_user_logged_in()) {
+		echo "<a href=\"" . wp_logout_url(home_url()) . "\"><img src=\"" . get_bloginfo('template_url') . "/img/logout.png\" /></a>";
+	} else {
+		echo "<img src=\"" . get_bloginfo('template_url') . "/img/login.png\"/>";
+	}
+?>
 </section>
 </nav>
