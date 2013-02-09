@@ -36,10 +36,10 @@
 	}
 	
 //Add the above script registrations into an action hook
-	add_action("wp_enqueue_scripts", "sg_remote_jquery");
-	add_action("wp_enqueue_scripts", "sg_remote_jquery_ui");
-	add_action("wp_enqueue_scripts", "sg_delfini");
-	add_action("wp_enqueue_scripts", "sg_uservoice");
-	add_action("wp_enqueue_scripts", "sg_html5shiv");
-	add_action("wp_enqueue_scripts", "sg_template_script");
+	//add_action("wp_enqueue_scripts", "sg_remote_jquery");
+	//add_action("wp_enqueue_scripts", "sg_remote_jquery_ui");
+	//add_action("wp_enqueue_scripts", "sg_delfini");
+	//add_action("wp_enqueue_scripts", "sg_uservoice");
+	//add_action("wp_enqueue_scripts", "sg_html5shiv");
+	//add_action("wp_enqueue_scripts", "sg_template_script");
 ?>
