@@ -29,14 +29,14 @@
 <input name="action" type="hidden" value="login" />
 <br /><br />
 <input class="red" name="wp-submit" type="submit" value="Login" />
-<p><a href="#">Forgot your password?</a></p>
+<p><a href="<?php echo site_url(); ?>/wp-login.php?action=lostpassword">Forgot your password?</a></p>
 </form>
 </div>
 
 <span class="toggle"></span>
 
 <div class="register">
-<form action="#" method="get">
+<form action="<?php echo site_url(); ?>/wp-content/themes/student-government/functions.php" method="post">
 <h2>Register</h2>
 <p>First and last name:</p><input autocomplete="off" name="name" type="text" />
 <p>Email address:</p><input autocomplete="off" name="username" type="email" />
@@ -64,12 +64,12 @@
 <li><a href="<?php echo get_bloginfo("url") . "/book-exchange/sell-books"; ?>">Sell Books</a></li>
 <li><a href="<?php echo get_bloginfo("url") . "/book-exchange/search"; ?>">Search</a></li>
 <li><a href="<?php echo get_bloginfo("url") . "/book-exchange/listings"; ?>">Browse</a></li>
-<li class="myAccount"><a href="<?php echo get_bloginfo("url") . "/book-exchange/account"; ?>">My Account</a></li>
+<?php if (is_user_logged_in()) {echo "<li class=\"myAccount\"><a href=\"" . get_bloginfo("url") . "/book-exchange/account\">My Account</a></li>";} ?>
 <?php if (current_user_can("manage_options")) {echo "<li class=\"admin\"><a href=\"" . get_bloginfo("url") . "/admin\">Administration</a></li>";} ?>
 </ul>
 
 <section class="search">
-<form action="#" method="get">
+<form action="<?php echo site_url(); ?>/book-exchange/search/" method="get">
 <input autocomplete="off" class="noMod search template" name="search" type="text" />
 <input type="hidden" name="category" value="0" />
 <input type="hidden" name="searchBy" value="title" />
