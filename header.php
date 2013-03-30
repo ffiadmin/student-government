@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <title><?php is_front_page() ? bloginfo("name") : wp_title(""); ?></title>
 <link rel="shortcut icon" href="<?php bloginfo('template_url');?>/img/favicon.ico" />
-<link href="//delfinicdn.ffstatic.com/stylesheets/delfini.all.min.css" rel="stylesheet" />
+<link href="//delfinicdn.appspot.com/stylesheets/delfini.all.min.css" rel="stylesheet" />
 <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css" rel="stylesheet" />
 <link href="<?php bloginfo('template_directory'); ?>/css/style.min.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script src="//delfinicdn.ffstatic.com/javascripts/delfini.all.min.js"></script>
+<script src="//delfinicdn.appspot.com/javascripts/delfini.all.min.js"></script>
 <script src="//widget.uservoice.com/JkKcZfC4qw8m0wz3PeMf5Q.js"></script>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/template.min.js.php"></script>
